@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :project_type %>
-    <%= form.text_area :project_type, id: :project_type %>
+    <%= form.select(:project_type, Project::PROJECT_TYPES)%>
   </div>
 
   <div class="field">
