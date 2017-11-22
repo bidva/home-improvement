@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  belongs_to :role
+  has_many :projects
+  before_create :set_default_role
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -20,4 +24,9 @@ class User < ApplicationRecord
     	user.image = auth.info.image # assuming the user model has an image
   	end
 	end
+
+  private
+  def set_default_role
+    self.role ||= Role.find_by_name('user')
+  end
 end
