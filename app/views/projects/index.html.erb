@@ -18,12 +18,12 @@
             <%= project.estimated_effort %>
             <%= project.actual_effort %>
             <%= project.status %>
-            <%= link_to 'Edit', edit_project_path(project) %>
-            <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Edit', edit_project_path(project), class:"btn btn-default" %>
+            <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %>
           </div>
         </div>
         <div class="text-center">
-          <%= link_to 'Show', project %>
+          <%= link_to 'Show', project, class:"btn btn-default" %>
         </div>
       </div>
     <% end %>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Project', new_project_path %>
+<%= link_to 'New Project', new_project_path, class:"btn btn-default" %>

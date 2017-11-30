@@ -35,7 +35,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.input :status, class: "form-control" %>
+    <%= f.input :status, collection:Project::STATUS_TYPES, class: "form-control" %>
   </div>
 
 
