@@ -8,6 +8,9 @@ end
 # rails
 gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.18'
+gem 'jquery-rails'
+gem 'simple_form', '~> 3.2'
+gem 'bootstrap-sass', '~> 3.3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'

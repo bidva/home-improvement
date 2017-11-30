@@ -1,34 +1,35 @@
 <p id="notice"><%= notice %></p>
+<div class="col-sm-11 col-xs-12 blog-content">
+  <p>
+    <strong>Name:</strong>
+    <%= @project.name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+  <p>
+    <strong>Desc:</strong>
+    <%= @project.desc %>
+  </p>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @project.desc %>
-</p>
+  <p>
+    <strong>Type:</strong>
+    <%= @project.project_type %>
+  </p>
 
-<p>
-  <strong>Type:</strong>
-  <%= @project.project_type %>
-</p>
+  <p>
+    <strong>Estimated effort:</strong>
+    <%= @project.estimated_effort %>
+  </p>
 
-<p>
-  <strong>Estimated effort:</strong>
-  <%= @project.estimated_effort %>
-</p>
+  <p>
+    <strong>Actual effort:</strong>
+    <%= @project.actual_effort %>
+  </p>
 
-<p>
-  <strong>Actual effort:</strong>
-  <%= @project.actual_effort %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @project.status %>
-</p>
+  <p>
+    <strong>Status:</strong>
+    <%= @project.status %>
+  </p>
+</div>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
