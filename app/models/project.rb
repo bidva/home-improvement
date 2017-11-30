@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
 	belongs_to :user
+	has_many :comments
 	before_validation :set_user
 	PROJECT_TYPES = ["Private ", "Public"]
 

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   belongs_to :role
   has_many :projects
+  has_many :commnets
   before_create :set_default_role
   
   # Include default devise modules. Others available are:
