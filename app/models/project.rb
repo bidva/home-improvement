@@ -4,12 +4,15 @@ class Project < ApplicationRecord
 	before_validation :set_user
   validates :name, presence: true
   validates :desc, presence: true
-  validates :project_type, presence: true
   validates :status, presence: true
+  scope :privates, -> { where(public: false)}
+  scope :publics, -> { where(public: true)}
 
-  PROJECT_TYPES = ["Private", "Public"]
 	STATUS_TYPES = ["created", "started", "stopped", "completed"]
 
+  def editable?
+    (self.user.id==Current.user.id)|(Current.user.admin?)
+  end
 	private
   def set_user
     self.user ||= Current.user

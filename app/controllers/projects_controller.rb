@@ -1,10 +1,15 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    if current_user.admin?
+      @projects = Project.all
+    else
+      @user_private_projects = current_user.projects.where(public: false)
+      @public_projects = Project.where(public: true) 
+      @projects = @user_private_projects+@public_projects
+    end
   end
 
   # GET /projects/1
@@ -20,6 +25,11 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    if current_user.admin?
+      render :edit
+    else
+      render text: 'Not Authorized', status: 403
+    end
   end
 
   # POST /projects
@@ -70,6 +80,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :desc, :project_type, :estimated_effort, :actual_effort, :status)
+      params.require(:project).permit(:name, :desc, :public, :estimated_effort, :actual_effort, :status)
     end
 end

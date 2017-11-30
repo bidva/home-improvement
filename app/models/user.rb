@@ -3,7 +3,8 @@ class User < ApplicationRecord
   has_many :projects
   has_many :commnets
   before_create :set_default_role
-  
+  scope :private_projects, -> {projects.private}
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -26,6 +27,10 @@ class User < ApplicationRecord
     	user.image = auth.info.image
   	end
 	end
+
+  def admin?
+    self.role.eql? "admin"
+  end
 
   private
   def set_default_role
