@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: homeimp_production
-  username: homeimp
-  password: <%= ENV['homeimp_DATABASE_PASSWORD'] %>
+  database: d6iqi9f22ih1q3
+  username: ssjdmudpecveer
+  password: 642d5546fddc801128ecc1f0ccf8124f03fb27c26778964c1db137011de0b9a4
+
