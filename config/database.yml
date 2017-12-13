@@ -23,15 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: home-improvement_development
-  username: postgres
-  password: 123abc,./
+  database: homeimp_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: myapp
+  #username: homeimp
 
   # The password associated with the postgres role (username).
   #password:
@@ -46,7 +44,7 @@ development:
   #port: 5432
 
   # Schema search path. The server defaults to $user,public
-  #schema_search_path: myapp,sharedapp,public
+  #schema_search_path: homeimp,sharedapp,public
 
   # Minimum log levels, in increasing order:
   #   debug5, debug4, debug3, debug2, debug1,
@@ -59,10 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: home-improvement_test
-  username: postgres
-  password: 123abc,./
-
+  database: homeimp_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -85,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: homeimp
-  username: nnrdwbtrjxtijj
-  password: 887d3dedabb2ad6e278e72637d767b521da1ec198e7b84f59405fd430646002b
+  database: homeimp_production
+  username: homeimp
+  password: <%= ENV['homeimp_DATABASE_PASSWORD'] %>
