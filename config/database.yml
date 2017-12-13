@@ -85,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: home-improvement_production
-  username: root
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  database: detbelh4uia8gp
+  username: nnrdwbtrjxtijj
+  password: 887d3dedabb2ad6e278e72637d767b521da1ec198e7b84f59405fd430646002b
