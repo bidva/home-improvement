@@ -15,7 +15,15 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap/theme';
 
 body{
   margin: 42px;
+}
+.alert-alert {
+  @extend .alert-warning;
+}
+
+.alert-notice {
+  @extend .alert-info;
 }

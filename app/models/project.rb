@@ -10,9 +10,6 @@ class Project < ApplicationRecord
 
 	STATUS_TYPES = ["created", "started", "stopped", "completed"]
 
-  def editable?
-    (self.user.id==Current.user.id)|(Current.user.admin?)
-  end
 	private
   def set_user
     self.user ||= Current.user

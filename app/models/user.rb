@@ -29,7 +29,7 @@ class User < ApplicationRecord
 	end
 
   def admin?
-    self.role.eql? "admin"
+    self.role.name.eql? "admin"
   end
 
   private

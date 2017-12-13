@@ -1,15 +1,10 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   # GET /projects
   # GET /projects.json
   def index
-    if current_user.admin?
-      @projects = Project.all
-    else
-      @user_private_projects = current_user.projects.where(public: false)
-      @public_projects = Project.where(public: true) 
-      @projects = @user_private_projects+@public_projects
-    end
+    @projects = Project.all
   end
 
   # GET /projects/1
@@ -65,11 +60,16 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    authorize @project
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def user_projects
+    @projects = policy_scope(Project)
   end
 
   private
