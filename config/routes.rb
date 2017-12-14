@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
     resources :comments
   end
-  resources :users, only: [:update]
+  resources :users, only: [:update, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'projects#index'
 end
