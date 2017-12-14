@@ -8,22 +8,27 @@
         </h3>
         </div>
         <div class="card-body">
-          <div><%= raw(project.desc).truncate(358) %></div>
+          <div class="project-content">
+            <%= raw(project.desc).truncate(358) %>
+            <%= link_to 'Read more', project %>
+          </div>
           <table class="table">
             <tr>
               <td>
-                <% if project.public? %>
-                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                <% else %>
-                  <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                <% end %>
+                <span class="has-tooltip" data-toggle="tooltip" title="<%=project.public ? "Private" : "Public" %>">
+                  <% if project.public? %>
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                  <% else %>
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                  <% end %>
+                </span>
               </td>
               <td><strong>stimate effort: </strong><%= project.estimated_effort %></td>
               <td><strong>actual effort: </strong><%= project.actual_effort %></td>
               <td><strong>status: </strong><%= project.status %></td>
               <td><strong>Created by:</strong><%= project.user.email %></td>
               <td>
-                <%= link_to 'Show', project, class:"btn btn-default" %>
+                
                 <% if policy(project).edit? %>
                   <%= link_to 'Edit', edit_project_path(project), class:"btn btn-default" %>
                 <% end %>
