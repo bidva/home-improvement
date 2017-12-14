@@ -4,7 +4,14 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    if current_user.admin?
+      @projects = Project.all
+    else
+      @user_private_projects = current_user.projects.where(public: false)
+      @public_projects = Project.where(public: true) 
+      @projects = @user_private_projects+@public_projects
+    end
+
   end
 
   # GET /projects/1
@@ -20,6 +27,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    authorize @project
     if current_user.admin?
       render :edit
     else
@@ -46,6 +54,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    authorize @project
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }

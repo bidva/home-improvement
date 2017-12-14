@@ -9,7 +9,9 @@ class Project < ApplicationRecord
   scope :publics, -> { where(public: true)}
 
 	STATUS_TYPES = ["created", "started", "stopped", "completed"]
-
+  def owned?(current_user)
+    self.user.id == current_user.id
+  end
 	private
   def set_user
     self.user ||= Current.user

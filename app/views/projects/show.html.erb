@@ -1,35 +1,33 @@
 <div class="row">
-  <div class="col-sm-11 col-xs-12 blog-content">
-      <p>
-          <strong>Name:</strong>
-          <%= @project.name %>
-      </p>
-
-      <p>
-          <strong>Desc:</strong>
-          <%= @project.desc %>
-      </p>
-
-      <p>
-          <strong>Public:</strong>
-          <%= @project.public %>
-      </p>
-
-      <p>
-          <strong>Estimated effort:</strong>
-          <%= @project.estimated_effort %>
-      </p>
-
-      <p>
-          <strong>Actual effort:</strong>
-          <%= @project.actual_effort %>
-      </p>
-
-      <p>
-          <strong>Status:</strong>
-          <%= @project.status %>
-      </p>
-  </div>
+        <div class="panel panel-default">
+        <div class="panel-heading">
+        <h3 class="">
+          <strong>Name: </strong><%= @project.name %>
+        </h3>
+        </div>
+        <div class="panel-body">
+          <div class="project-content">
+            <%= raw(@project.desc) %>
+          </div>
+          <table class="table">
+            <tr>
+              <td>
+                <span class="has-tooltip" data-toggle="tooltip" title="<%=@project.public ? "Public" : "Private" %>">
+                  <% if @project.public? %>
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                  <% else %>
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                  <% end %>
+                </span>
+              </td>
+              <td><strong>stimate effort: </strong><%= @project.estimated_effort %></td>
+              <td><strong>actual effort: </strong><%= @project.actual_effort %></td>
+              <td><strong>status: </strong><%= @project.status %></td>
+              <td><strong>Created by:</strong><%= @project.user.email %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
 </div>
 
 <div class="row">
@@ -37,21 +35,23 @@
   <% @project.comments.each do |comment| %>
     <%= render 'comment', comment: comment %>
   <% end %>
-  <div class="comment-wrap">
-      <div class="photo">
-          <div class="avatar" style="background-image: url('<%=current_user.image%>')"></div>
-      </div>
-      <div class="comment-block">
-          <%= simple_form_for([@project, @project.comments.build]) do |f| %>
-              <div class="form-group">
-                  <%= f.input :text,  as: :text, placeholder: 'Add comment...'%>
-              </div>
-              <div class="form-group">
-                  <%= f.button :submit %>
-              </div>
-              <% end %>
-      </div>
-  </div>
+  <% if @project.public||@current_user.admin?||@project.owned?(@current_user)%>
+    <div class="comment-wrap">
+        <div class="photo">
+            <div class="avatar" style="background-image: url('<%=current_user.image%>')"></div>
+        </div>
+        <div class="comment-block">
+            <%= simple_form_for([@project, @project.comments.build]) do |f| %>
+                <div class="form-group">
+                    <%= f.input :text,  as: :text, placeholder: 'Add comment...'%>
+                </div>
+                <div class="form-group">
+                    <%= f.button :submit %>
+                </div>
+                <% end %>
+        </div>
+    </div>
+  <% end %>
 </div>
 
 
