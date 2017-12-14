@@ -1,26 +1,36 @@
 <div class="container">
-  <div class="col-sm-10 col-sm-offset-1 col-xs-12 project-content">
+  <div class="project-content">
     <% @projects.each do |project| %>
-      <div class="col-xs-12">
-        <div class="text-center">
-          <h2><%= project.name %></h2>
-        </div>
-        <div>
+      <div class="panel panel-primary">
+        <h3 class="card-header primary-color white-text">
+          <strong>Name: </strong><%= project.name %> 
+        </h3>
+        <div class="card-body">
           <div><%= raw(project.desc).truncate(358) %></div>
-          <div>
-            <%= project.public %>
-            <%= project.estimated_effort %>
-            <%= project.actual_effort %>
-            <%= project.status %>
-            <%= "made by :#{project.user.email}" %>
-              <%= link_to 'Show', project, class:"btn btn-default" %>
-              <% if policy(project).edit? %>
-                <%= link_to 'Edit', edit_project_path(project), class:"btn btn-default" %>
-              <% end %>
-            <% if policy(project).destroy? %>
-              <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %>
-            <% end %>
-          </div>
+          <table class="table">
+            <tr>
+              <td>
+                <% if project.public? %>
+                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                <% else %>
+                  <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                <% end %>
+              </td>
+              <td><strong>stimate effort: </strong><%= project.estimated_effort %></td>
+              <td><strong>actual effort: </strong><%= project.actual_effort %></td>
+              <td><strong>status: </strong><%= project.status %></td>
+              <td><strong>Created by:</strong><%= project.user.email %></td>
+              <td>
+                <%= link_to 'Show', project, class:"btn btn-default" %>
+                <% if policy(project).edit? %>
+                  <%= link_to 'Edit', edit_project_path(project), class:"btn btn-default" %>
+                <% end %>
+                <% if policy(project).destroy? %>
+                  <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
     <% end %>

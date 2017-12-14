@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Home Improvment</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container">
-    <div class="navbar-header">
-      <%= link_to 'Home Improvment', root_path, class: 'navbar-brand' %>
-    </div>
-    <div id="navbar">
-      <ul class="nav navbar-nav pull-right">
-        <% if user_signed_in? %>
-          <li><%= link_to 'All projects', projects_path %></li>
-          <li><%= link_to 'Your projects', user_projects_path %>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <%= current_user.name %>
-              <img src=<%= current_user.image %> class="img-responsive img-circle" alt="Cinque Terre">
-              
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" >
-              <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-            </ul>
-          </li>
-        <% else %>
-          <li><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></li>
+  <head>
+    <meta charset="utf-8">
+    <title>Home Improvment</title>
+    <%= favicon_link_tag 'icons/home.png' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to 'Home Improvment', root_path, class: 'navbar-brand' %>
+        </div>
+        <div id="navbar">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'All projects', projects_path %></li>
+            <li><%= link_to 'Your projects', user_projects_path %>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
+            <% if user_signed_in? %>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <%= current_user.name %>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" >
+                  <li><%= link_to "Profile", current_user %></li>
+                  <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-container" class="container-fluid">
+      <div class="row">
+        <% if current_user %>
+          <div class="well well-sm">
+            Admin: <strong><%= current_user.admin? %></strong><br>
+            <%= link_to 'Toggle admin rights', user_path(current_user), method: :patch, class: 'btn btn-info' %>
+          </div>
         <% end %>
-      </ul>
+        <div class="container">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>">
+              <%= value %>
+            </div>
+          <% end %>
+        </div>
+
+        <%= yield :top_content %>
+
+        <div class="container">
+          <h1><%= yield :header %></h1>
+
+          <%= yield %>
+        </div>
+      </div>
+      </div>
     </div>
-  </div>
-</nav>
-<% if current_user %>
-  <div class="well well-sm">
-    Admin: <strong><%= current_user.admin? %></strong><br>
-    <%= link_to 'Toggle admin rights', user_path(current_user), method: :patch, class: 'btn btn-info' %>
-  </div>
-<% end %>
-<div class="container">
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>">
-      <%= value %>
+    <div id="footer">
+        <div class="container">
+          <p class="text-muted">Created by <a href="https://github.com/bidva" target="_blank">Amir Bidva</a></p>
     </div>
-  <% end %>
-</div>
-
-<%= yield :top_content %>
-
-<div class="container">
-  <h1><%= yield :header %></h1>
-
-  <%= yield %>
-</div>
-
-<div id="footer">
-  <div class="container">
-    <p class="text-muted">Created by <a href="http://bodrovis.tech" target="_blank">Amir Bidva</a></p>
-  </div>
-</div>
-
-</body>
+  </body>
 </html>

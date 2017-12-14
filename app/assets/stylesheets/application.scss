@@ -15,15 +15,33 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'bootstrap/theme';
 
-body{
-  margin: 42px;
-}
-.alert-alert {
-  @extend .alert-warning;
-}
+$height-footer: 30px;
 
-.alert-notice {
-  @extend .alert-info;
+html {
+  min-height: 100%;
+  position: relative;
+  body {
+    margin-bottom: $height-footer;
+  }
+  #main-container{
+    padding-bottom: 10px;
+  }
+  #footer {
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    height: $height-footer;
+    background-color: #f5f5f5;
+    .footer-block {
+      margin: 20px 0;
+    }
+  }
+  .alert-alert {
+    @extend .alert-warning;
+  }
+
+  .alert-notice {
+    @extend .alert-info;
+  }
 }
