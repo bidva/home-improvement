@@ -1,10 +1,12 @@
 <div class="container">
   <div class="project-content">
     <% @projects.each do |project| %>
-      <div class="panel panel-primary">
-        <h3 class="card-header primary-color white-text">
-          <strong>Name: </strong><%= project.name %> 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+        <h3 class="">
+          <strong>Name: </strong><%= project.name %>
         </h3>
+        </div>
         <div class="card-body">
           <div><%= raw(project.desc).truncate(358) %></div>
           <table class="table">
