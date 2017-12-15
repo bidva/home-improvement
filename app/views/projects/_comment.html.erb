@@ -1,15 +1,18 @@
 <div class="comment-wrap">
   <div class="photo">
     <div class="avatar" style="background-image: url('<%=comment.user.image %>')"></div>
-    </div>
-    <div class="comment-block">
-      <p class="comment-text"><%=comment.text %>
+  </div>
+  <div class="comment-block">
+    <p class="comment-text">
+      <%=comment.text %>
         <% if policy(comment).destroy? %>
-                  <%= link_to '', project_comment_path(@project,comment), method: :delete, data: { confirm: 'Are you sure?' }, class:"glyphicon glyphicon-trash" %>
-        <% end %>
-      </p>
-      <div class="bottom-comment">
-        <div class="comment-date"><%=comment.created_at%></div>
+          <%=l ink_to '', project_comment_path(@project,comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-trash" %>
+            <% end %>
+    </p>
+    <div class="bottom-comment">
+      <div class="comment-date">
+        <%=comment.created_at%>
       </div>
-      </div>
+    </div>
+  </div>
 </div>

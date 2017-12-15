@@ -1,4 +1,4 @@
-<%= simple_form_for @project do |f| %>
+<%=simple_form_for @project do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -7,40 +7,29 @@
       <ul>
         <% @project.errors.full_messages.each do |msg| %>
           <li>
-            <%= msg %>
+            <%=msg %>
           </li>
           <% end %>
       </ul>
     </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.input :name, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.input :desc, as: :text, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.input :public, as: :radio_buttons, :checked => false %>
-  </div>
-
-  <div class="form-group">
-    <%= f.input :estimated_effort, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.input :actual_effort, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.input :status, collection:Project::STATUS_TYPES, :selected => "created", class: "form-control" %>
-  </div>
-
-
-
-  <div class="form-group">
-    <%= f.button :submit, class: "btn btn-primary" %>
-  </div>
-<% end %>
+    <% end %>
+      <div class="form-group">
+        <%=f.input :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%=f.input :desc, as: :text, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%=f.input :public, as: :radio_buttons, :checked=> false %> </div>
+      <div class="form-group">
+        <%=f.input :estimated_effort, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%=f.input :actual_effort, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%=f.input :status, collection:Project::STATUS_TYPES, :selected=> "created", class: "form-control" %> </div>
+      <div class="form-group">
+        <%=f.button :submit, class: "btn btn-primary" %>
+      </div>
+      <% end %>

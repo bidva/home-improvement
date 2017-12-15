@@ -3,44 +3,48 @@
     <% @projects.each do |project| %>
       <div class="panel panel-default">
         <div class="panel-heading">
-        <h3 class="">
+          <h3 class="">
           <%= link_to(project) do %>
             <strong><%= project.name %></strong>
           <% end %>
-        </h3>
-        </div>
+        </h3> </div>
         <div class="panel-body">
           <div class="project-content">
-            <%= raw(project.desc).truncate(358) %>
+            <%=raw(project.desc).truncate(358) %>
           </div>
           <table class="table">
             <tr>
-              <td class="status-icon">
-                <span class="has-tooltip" data-toggle="tooltip" title="<%=project.public ? "Public" : "Private" %>">
+              <td class="status-icon"> <span class="has-tooltip" data-toggle="tooltip" title="<%=project.public ? " Public " : "Private " %>">
                   <% if project.public? %>
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                  <% else %>
-                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                <% else %> <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                   <% end %>
-                </span>
+                    </span>
               </td>
-              <td><strong>stimate effort: </strong><%= project.estimated_effort %></td>
-              <td><strong>actual effort: </strong><%= project.actual_effort %></td>
-              <td><strong>status: </strong><%= project.status %></td>
-              <td><strong>Created by:</strong><%= project.user.email %></td>
+              <td><strong>stimate effort: </strong>
+                <%=project.estimated_effort %>
+              </td>
+              <td><strong>actual effort: </strong>
+                <%=project.actual_effort %>
+              </td>
+              <td><strong>status: </strong>
+                <%=project.status %>
+              </td>
+              <td><strong>Created by:</strong>
+                <%=project.user.email %>
+              </td>
               <td class="btns-container">
-                
                 <% if policy(project).edit? %>
-                  <%= link_to 'Edit', edit_project_path(project), class:"btn btn-primary" %>
-                <% end %>
-                <% if policy(project).destroy? %>
-                  <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary" %>
-                <% end %>
+                  <%=link_to 'Edit', edit_project_path(project), class: "btn btn-primary" %>
+                    <% end %>
+                      <% if policy(project).destroy? %>
+                        <%=link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+                          <% end %>
               </td>
             </tr>
           </table>
         </div>
       </div>
-    <% end %>
+      <% end %>
   </div>
 </div>
