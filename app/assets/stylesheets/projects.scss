@@ -4,3 +4,76 @@
 .project-content{
   padding: 15px;
 }
+.panel-heading{
+  padding: 5px 15px !important;
+}
+.panel-heading h3 a{
+  color: #515A5A;
+}
+.panel-heading h3{
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 20px;
+  color: #515A5A;
+}
+.status-icon{
+    width: 20px;
+    padding: 3px !important;
+    padding-top: 10px !important;
+}
+.panel-body .table td{
+  color: #515A5A;
+}
+
+.panel-body{
+  padding: 5px;
+}
+.panel-body .table{
+  margin-bottom: 0px;
+}
+.btns-container{
+  text-align: right;
+}
+
+.new-project-btn{
+  margin-top: 30px;
+}
+.photo{
+  width: 5.5rem;
+}
+.photo .avatar{
+  height: 4.25rem;
+  width: 4.25rem;
+}
+.page-title{
+  width: 70%;
+  display: inline-block;
+  padding-left: 30px;
+}
+.comment-text{
+  font-size: 15px;
+}
+.comment_text label{
+  display: none;
+}
+.comment-text .glyphicon{
+  padding-left: 7px;  
+}
+.comment-edit-btns{
+  margin-left: 20px;
+}
+.comment-date{
+  font-size: 12px;
+} 
+#footer{
+  padding: 20px;
+  padding-bottom: 20px;
+  height: 50px !important;
+}
+#main-container{
+  margin-bottom: 70px;
+}
+.admin-status{
+  padding-left: 20px;
+  margin-right: 20px;
+}

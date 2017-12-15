@@ -1,7 +1,7 @@
+# comments controller
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comment, only: [:destroy]
-
 
   def create
     @project = Project.find(params[:project_id])
@@ -18,11 +18,17 @@ class CommentsController < ApplicationController
   end
 
   private
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
 
-    def comment_params
-      params.require(:comment).permit(:text, :created_at, :project_id, :user_id)
-    end
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def comment_params
+    params.require(:comment).permit(
+      :text,
+      :created_at,
+      :project_id,
+      :user_id
+    )
+  end
 end

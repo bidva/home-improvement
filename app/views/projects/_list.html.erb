@@ -4,17 +4,18 @@
       <div class="panel panel-default">
         <div class="panel-heading">
         <h3 class="">
-          <strong>Name: </strong><%= project.name %>
+          <%= link_to(project) do %>
+            <strong>Name: </strong><%= project.name %>
+          <% end %>
         </h3>
         </div>
         <div class="panel-body">
           <div class="project-content">
             <%= raw(project.desc).truncate(358) %>
-            <%= link_to 'Read more', project %>
           </div>
           <table class="table">
             <tr>
-              <td>
+              <td class="status-icon">
                 <span class="has-tooltip" data-toggle="tooltip" title="<%=project.public ? "Public" : "Private" %>">
                   <% if project.public? %>
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
@@ -27,13 +28,13 @@
               <td><strong>actual effort: </strong><%= project.actual_effort %></td>
               <td><strong>status: </strong><%= project.status %></td>
               <td><strong>Created by:</strong><%= project.user.email %></td>
-              <td>
+              <td class="btns-container">
                 
                 <% if policy(project).edit? %>
-                  <%= link_to 'Edit', edit_project_path(project), class:"btn btn-default" %>
+                  <%= link_to 'Edit', edit_project_path(project), class:"btn btn-primary" %>
                 <% end %>
                 <% if policy(project).destroy? %>
-                  <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %>
+                  <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary" %>
                 <% end %>
               </td>
             </tr>

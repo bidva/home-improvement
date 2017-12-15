@@ -24,6 +24,9 @@ html {
   body {
     margin-bottom: $height-footer;
   }
+  abbr[title], abbr[data-original-title]{
+    color: red;
+  }
   #main-container{
     padding-bottom: 10px;
   }
