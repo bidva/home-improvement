@@ -6,7 +6,7 @@
     <p class="comment-text">
       <%=comment.text %>
         <% if policy(comment).destroy? %>
-          <%=l ink_to '', project_comment_path(@project,comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-trash" %>
+          <%=link_to '', project_comment_path(@project,comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-trash" %>
             <% end %>
     </p>
     <div class="bottom-comment">
