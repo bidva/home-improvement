@@ -1,4 +1,20 @@
 Style/EndOfLine:
   EnforcedStyle: lf
+EndOfLine:
+  Enabled: false
 Metrics/LineLength:
-  Max: 150
+  Max: 160
+Metrics/BlockLength:
+  Max: 160
+Documentation:
+  Enabled: false
+Style/MixinUsage:
+  Enabled: false
+Style/StderrPuts:
+  Enabled: false
+Layout/AlignHash:
+  Enabled: false
+Metrics/MethodLength:
+ Max: 15
+Style/NumericLiterals:
+  Enabled: false
