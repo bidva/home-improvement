@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
       @public_projects = Project.where(public: true) 
       @projects = @user_private_projects+@public_projects
     end
-
+    @projects.sort_by{ |obj| obj.id }.reverse
   end
 
   # GET /projects/1
