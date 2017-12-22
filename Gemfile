@@ -30,10 +30,16 @@ group :development, :test do
   # debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rubocop', require: false
+  gem 'rspec-rails'
 end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
+end
+
+group :test do
+  gem "capybara"
+  gem "selenium-webdriver"
 end
 
 # Windows does not include zoneinfo files,
